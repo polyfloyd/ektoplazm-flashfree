@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name        Ektoplazm Noflash
 // @namespace   polyfloyd
-// @include     *.ektoplazm.com/free-music/*
-// @version     1
+// @include     *.ektoplazm.com/*
+// @version     22-10-2014
 // @grant       none
 // ==/UserScript==
 
@@ -12,20 +12,22 @@ function insertAfter(node, ref) {
   ref.parentNode.insertBefore(node, ref.nextSibling);
 }
 
-var source  = document.querySelector('.audioplayer_container ~ p script').innerHTML;
-var encoded = source.match(/soundFile:\s*\"([^"]+)"/)[1];
-var decoded = atob(encoded);
-var files   = decoded.split(',');
+Array.prototype.forEach.call(document.getElementsByClassName('post'), function(post) {
+  var source  = post.querySelector('.audioplayer_container ~ p script').innerHTML;
+  var encoded = source.match(/soundFile:\s*\"([^"]+)"/)[1];
+  var decoded = atob(encoded);
+  var files   = decoded.split(',');
 
-var siblings = document.querySelector('.tl').getElementsByClassName('d');
-files.forEach(function(file, i) {
-  var audio = document.createElement('audio');
-  audio.setAttribute('controls', 'controls');
-  audio.setAttribute('preload',  'none');
-  audio.setAttribute('src',      file);
-  insertAfter(audio, siblings[i]);
-}, '');
+  var siblings = post.querySelector('.tl').getElementsByClassName('d');
+  files.forEach(function(file, i) {
+    var audio = document.createElement('audio');
+    audio.setAttribute('controls', 'controls');
+    audio.setAttribute('preload',  'none');
+    audio.setAttribute('src',      file);
+    insertAfter(audio, siblings[i]);
+  });
 
-document.querySelector('.audioplayer_container').innerHTML = '';
+  post.querySelector('.audioplayer_container').innerHTML = '';
+});
 
 })();
