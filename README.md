@@ -7,7 +7,7 @@ However, it uses a non-free flash object as the main audioplayer.
 This userscript substitutes the Flashplayer with browser-native audio players.
 It works in Firefox (Greasemonkey) and Chromium (Tampermonkey).
 
-More information about Ektplazm can be found [here](http://www.ektoplazm.com/about).
+More information about Ektoplazm can be found [here](http://www.ektoplazm.com/about).
 
 ## License
 MIT
