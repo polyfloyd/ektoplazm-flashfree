@@ -8,10 +8,6 @@
 
 (function() {
 
-function insertAfter(node, ref) {
-  ref.parentNode.insertBefore(node, ref.nextSibling);
-}
-
 Array.prototype.forEach.call(document.getElementsByClassName('post'), function(post) {
   var source  = post.querySelector('.audioplayer_container ~ p script').innerHTML;
   var encoded = source.match(/soundFile:\s*\"([^"]+)"/)[1];
@@ -24,7 +20,12 @@ Array.prototype.forEach.call(document.getElementsByClassName('post'), function(p
     audio.setAttribute('controls', 'controls');
     audio.setAttribute('preload',  'none');
     audio.setAttribute('src',      file);
-    insertAfter(audio, siblings[i]);
+    audio.style.verticalAlign = 'middle';
+    audio.style.cssFloat = 'right';
+    audio.style.lineHeight = '30px';
+    var after = siblings[i];
+    after.style.lineHeight = '30px';
+    after.parentNode.insertBefore(audio, after.nextSibling);
   });
 
   post.querySelector('.audioplayer_container').innerHTML = '';
