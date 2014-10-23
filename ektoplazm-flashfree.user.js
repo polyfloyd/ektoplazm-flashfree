@@ -2,7 +2,7 @@
 // @name        Ektoplazm Noflash
 // @namespace   polyfloyd
 // @include     *.ektoplazm.com/*
-// @version     22-10-2014
+// @version     23-10-2014
 // @grant       none
 // ==/UserScript==
 
